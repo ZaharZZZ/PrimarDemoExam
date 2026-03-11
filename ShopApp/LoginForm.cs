@@ -50,5 +50,10 @@ namespace ShopApp
             mainForm.Show();
             this.Hide();
         }
+
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

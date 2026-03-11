@@ -2,17 +2,8 @@
 {
     partial class ProductControl
     {
-       
-        /// <summary> 
-        /// Обязательная переменная конструктора.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-        
 
-        /// <summary> 
-        /// Освободить все используемые ресурсы.
-        /// </summary>
-        /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,15 +13,8 @@
             base.Dispose(disposing);
         }
 
-        #region Код, автоматически созданный конструктором компонентов
-
-        /// <summary> 
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
-        /// </summary>
         private void InitializeComponent()
         {
-
             this.pictureObyv = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelSupplier = new System.Windows.Forms.Label();
@@ -49,7 +33,6 @@
             // 
             // pictureObyv
             // 
-            this.pictureObyv.BackColor = System.Drawing.Color.White;
             this.pictureObyv.Location = new System.Drawing.Point(15, 15);
             this.pictureObyv.Name = "pictureObyv";
             this.pictureObyv.Size = new System.Drawing.Size(185, 180);
@@ -59,7 +42,6 @@
             // 
             // groupBox1
             // 
-            
             this.groupBox1.Controls.Add(this.labelSupplier);
             this.groupBox1.Controls.Add(this.labelStockQuantity);
             this.groupBox1.Controls.Add(this.labelCategoryName);
@@ -77,7 +59,7 @@
             // labelSupplier
             // 
             this.labelSupplier.AutoSize = true;
-            this.labelSupplier.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelSupplier.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.labelSupplier.Location = new System.Drawing.Point(6, 92);
             this.labelSupplier.Name = "labelSupplier";
             this.labelSupplier.Size = new System.Drawing.Size(91, 19);
@@ -87,7 +69,7 @@
             // labelStockQuantity
             // 
             this.labelStockQuantity.AutoSize = true;
-            this.labelStockQuantity.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelStockQuantity.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.labelStockQuantity.Location = new System.Drawing.Point(6, 152);
             this.labelStockQuantity.Name = "labelStockQuantity";
             this.labelStockQuantity.Size = new System.Drawing.Size(164, 19);
@@ -97,7 +79,7 @@
             // labelCategoryName
             // 
             this.labelCategoryName.AutoSize = true;
-            this.labelCategoryName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCategoryName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.labelCategoryName.Location = new System.Drawing.Point(6, 16);
             this.labelCategoryName.Name = "labelCategoryName";
             this.labelCategoryName.Size = new System.Drawing.Size(311, 19);
@@ -107,7 +89,7 @@
             // labelDescription
             // 
             this.labelDescription.AutoSize = true;
-            this.labelDescription.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelDescription.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.labelDescription.Location = new System.Drawing.Point(6, 36);
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(134, 19);
@@ -117,7 +99,7 @@
             // labelUnit
             // 
             this.labelUnit.AutoSize = true;
-            this.labelUnit.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelUnit.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.labelUnit.Location = new System.Drawing.Point(6, 132);
             this.labelUnit.Name = "labelUnit";
             this.labelUnit.Size = new System.Drawing.Size(152, 19);
@@ -127,7 +109,7 @@
             // labelManufacturer
             // 
             this.labelManufacturer.AutoSize = true;
-            this.labelManufacturer.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelManufacturer.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.labelManufacturer.Location = new System.Drawing.Point(6, 72);
             this.labelManufacturer.Name = "labelManufacturer";
             this.labelManufacturer.Size = new System.Drawing.Size(116, 19);
@@ -137,30 +119,26 @@
             // labelPrice
             // 
             this.labelPrice.AutoSize = true;
-            this.labelPrice.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPrice.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.labelPrice.Location = new System.Drawing.Point(6, 112);
             this.labelPrice.Name = "labelPrice";
             this.labelPrice.Size = new System.Drawing.Size(50, 19);
             this.labelPrice.TabIndex = 3;
             this.labelPrice.Text = "Цена: ";
-            //
+            // 
             // labelNewPrice
-            //
+            // 
             this.labelNewPrice.AutoSize = true;
-            this.labelNewPrice.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelNewPrice.Location = new System.Drawing.Point(150, 112); // подберите координаты
+            this.labelNewPrice.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.labelNewPrice.Location = new System.Drawing.Point(160, 112);
             this.labelNewPrice.Name = "labelNewPrice";
             this.labelNewPrice.Size = new System.Drawing.Size(0, 19);
             this.labelNewPrice.TabIndex = 7;
-            this.labelNewPrice.Text = "";
-
             // 
             // richTextBox1
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.White;
             this.richTextBox1.Location = new System.Drawing.Point(531, 15);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(124, 180);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
@@ -168,8 +146,7 @@
             // labelDiscount
             // 
             this.labelDiscount.AutoSize = true;
-            this.labelDiscount.BackColor = System.Drawing.Color.White;
-            this.labelDiscount.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelDiscount.Font = new System.Drawing.Font("Times New Roman", 20.25F);
             this.labelDiscount.Location = new System.Drawing.Point(580, 87);
             this.labelDiscount.Name = "labelDiscount";
             this.labelDiscount.Size = new System.Drawing.Size(28, 31);
@@ -191,15 +168,8 @@
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-            //
-            //
-            //
-
 
         }
-
-        #endregion
-        private System.Windows.Forms.Label labelNewPrice;
 
         private System.Windows.Forms.PictureBox pictureObyv;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -209,6 +179,7 @@
         private System.Windows.Forms.Label labelStockQuantity;
         private System.Windows.Forms.Label labelUnit;
         private System.Windows.Forms.Label labelPrice;
+        private System.Windows.Forms.Label labelNewPrice; // объявление
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label labelDiscount;
         private System.Windows.Forms.Label labelSupplier;

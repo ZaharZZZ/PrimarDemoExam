@@ -8,8 +8,6 @@ namespace ShopControlLibrary
 {
     public partial class ProductControl : UserControl
     {
-        private Product product;
-
         public ProductControl()
         {
             InitializeComponent();
@@ -23,56 +21,53 @@ namespace ShopControlLibrary
                 return;
             }
 
-            // Заполнение текстовых полей
+            // Основные поля
             labelCategoryName.Text = product.Category + " | " + product.Name;
             labelDescription.Text = "Описание товара: " + product.Description;
             labelManufacturer.Text = "Производитель: " + product.Manufacture;
             labelSupplier.Text = "Поставщик: " + product.Supplier;
-                        labelUnit.Text = "Единица измерения: " + product.Unit;
+            labelUnit.Text = "Единица измерения: " + product.Unit;
             labelStockQuantity.Text = "Количество на складе: " + product.Stock;
-            labelDiscount.Text = product.Discount.ToString(); // можно добавить "%", если нужно
+            labelDiscount.Text = product.Discount.ToString() + "%";
 
+            // Обработка цены и скидки
             decimal price = product.Price;
             int discount = product.Discount;
 
             if (discount > 0)
             {
-                // Вычисляем цену со скидкой
                 decimal newPrice = price * (100 - discount) / 100;
 
-                // Старая цена – красная, зачеркнутая
+                // Старая цена – красная, зачёркнутая
                 labelPrice.Text = "Цена: " + price.ToString("C");
                 labelPrice.Font = new Font(labelPrice.Font, FontStyle.Strikeout);
                 labelPrice.ForeColor = Color.Red;
 
                 // Новая цена – черная
-                labelNewPrice.Text = "  => " + newPrice.ToString("C"); // можно добавить стрелку или просто пробел
+                labelNewPrice.Text = "  ⇒ " + newPrice.ToString("C");
                 labelNewPrice.ForeColor = Color.Black;
                 labelNewPrice.Visible = true;
             }
             else
             {
-                // Без скидки – обычная цена
                 labelPrice.Text = "Цена: " + price.ToString("C");
                 labelPrice.Font = new Font(labelPrice.Font, FontStyle.Regular);
                 labelPrice.ForeColor = Color.Black;
                 labelNewPrice.Visible = false;
             }
 
-            // Установка фона в зависимости от наличия и скидки
+            // Подсветка фона всего контрола
             if (product.Stock == 0)
             {
-                // Товара нет на складе – голубой фон
                 this.BackColor = Color.LightBlue;
             }
             else if (discount > 15)
             {
-                // Скидка >15% – фон #2E8B57
-                this.BackColor = Color.FromArgb(0x2E, 0x8B, 0x57);
+                this.BackColor = Color.FromArgb(0x2E, 0x8B, 0x57); // #2E8B57
+                // Для контраста можно изменить цвет текста на белый, но оставим как есть
             }
             else
             {
-                // Обычный фон
                 this.BackColor = SystemColors.Control;
             }
 
@@ -82,32 +77,30 @@ namespace ShopControlLibrary
 
         private void LoadImage(string photoFileName)
         {
-            // 1. Пытаемся загрузить указанное в БД изображение
+            // Путь к папке Resources относительно .exe
+            string resourcesFolder = Path.Combine(Application.StartupPath, "Resources");
+
+            // Попытка загрузить изображение товара
             if (!string.IsNullOrEmpty(photoFileName))
             {
-                string imagePath = Path.Combine(Application.StartupPath, "Resources", photoFileName);
+                string imagePath = Path.Combine(resourcesFolder, photoFileName);
                 if (File.Exists(imagePath))
                 {
                     try
                     {
                         pictureObyv.Image?.Dispose();
                         pictureObyv.Image = Image.FromFile(imagePath);
-                        return; // Успешно загрузили – выходим
+                        return;
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        // Логируем ошибку, но продолжаем – попытаемся загрузить заглушку
-                        System.Diagnostics.Debug.WriteLine($"Ошибка загрузки {imagePath}: {ex.Message}");
+                        // Ошибка загрузки – игнорируем, перейдём к заглушке
                     }
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine($"Файл не найден: {imagePath}");
                 }
             }
 
-            // 2. Если файл не найден или photo пусто – загружаем заглушку picture.png
-            string defaultImagePath = Path.Combine(Application.StartupPath, "Resources", "picture.png");
+            // Заглушка
+            string defaultImagePath = Path.Combine(resourcesFolder, "picture.png");
             if (File.Exists(defaultImagePath))
             {
                 try
@@ -115,16 +108,13 @@ namespace ShopControlLibrary
                     pictureObyv.Image?.Dispose();
                     pictureObyv.Image = Image.FromFile(defaultImagePath);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    System.Diagnostics.Debug.WriteLine($"Ошибка загрузки заглушки {defaultImagePath}: {ex.Message}");
                     pictureObyv.Image = null;
                 }
             }
             else
             {
-                // Если даже заглушка отсутствует – просто очищаем PictureBox
-                System.Diagnostics.Debug.WriteLine($"Файл заглушки не найден: {defaultImagePath}");
                 pictureObyv.Image = null;
             }
         }
@@ -143,7 +133,5 @@ namespace ShopControlLibrary
             this.BackColor = SystemColors.Control;
             pictureObyv.Image = null;
         }
-
-
     }
 }
