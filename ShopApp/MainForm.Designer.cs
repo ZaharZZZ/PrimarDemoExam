@@ -34,7 +34,7 @@
             // 
             // panelUser
             // 
-            this.panelUser.BackColor = System.Drawing.Color.LightGray;
+            this.panelUser.BackColor = System.Drawing.Color.White;
             this.panelUser.Controls.Add(this.lblUserName);
             this.panelUser.Controls.Add(this.btnLogout);
             this.panelUser.Dock = System.Windows.Forms.DockStyle.Top;
@@ -55,12 +55,13 @@
             // btnLogout
             // 
             this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogout.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.btnLogout.Location = new System.Drawing.Point(735, 8);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(75, 23);
             this.btnLogout.TabIndex = 1;
             this.btnLogout.Text = "Выход";
-            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // MainForm
