@@ -326,6 +326,7 @@ namespace ShopApp
             {
                 pbPhoto.Image.Dispose();
             }
+            
         }
     }
 }

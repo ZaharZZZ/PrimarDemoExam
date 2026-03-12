@@ -68,7 +68,7 @@ namespace ShopControlLibrary
             }
             else
             {
-                this.BackColor = SystemColors.Control;
+                this.BackColor = Color.White;
             }
 
             // Загрузка изображения

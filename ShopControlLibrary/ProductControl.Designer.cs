@@ -33,6 +33,7 @@
             // 
             // pictureObyv
             // 
+            this.pictureObyv.BackColor = System.Drawing.Color.White;
             this.pictureObyv.Location = new System.Drawing.Point(15, 15);
             this.pictureObyv.Name = "pictureObyv";
             this.pictureObyv.Size = new System.Drawing.Size(185, 180);
@@ -157,6 +158,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.labelDiscount);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.groupBox1);

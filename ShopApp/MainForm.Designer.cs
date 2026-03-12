@@ -15,6 +15,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelUser = new System.Windows.Forms.Panel();
             this.lblUserName = new System.Windows.Forms.Label();
@@ -27,13 +28,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelUser.SuspendLayout();
             this.panelTools.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Chartreuse;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 138);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -42,7 +46,7 @@
             // 
             // panelUser
             // 
-            this.panelUser.BackColor = System.Drawing.Color.LightGray;
+            this.panelUser.BackColor = System.Drawing.Color.Chartreuse;
             this.panelUser.Controls.Add(this.lblUserName);
             this.panelUser.Controls.Add(this.btnLogout);
             this.panelUser.Dock = System.Windows.Forms.DockStyle.Top;
@@ -63,18 +67,20 @@
             // btnLogout
             // 
             this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogout.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.btnLogout.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnLogout.Location = new System.Drawing.Point(699, 6);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(120, 31);
             this.btnLogout.TabIndex = 1;
             this.btnLogout.Text = "Выход";
-            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // panelTools
             // 
-            this.panelTools.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelTools.BackColor = System.Drawing.Color.White;
+            this.panelTools.Controls.Add(this.pictureBox1);
             this.panelTools.Controls.Add(this.btnAddProduct);
             this.panelTools.Controls.Add(this.cmbSort);
             this.panelTools.Controls.Add(this.cmbSupplierFilter);
@@ -90,13 +96,14 @@
             // 
             // btnAddProduct
             // 
+            this.btnAddProduct.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.btnAddProduct.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAddProduct.Location = new System.Drawing.Point(12, 45);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(138, 36);
             this.btnAddProduct.TabIndex = 6;
             this.btnAddProduct.Text = "Добавить товар";
-            this.btnAddProduct.UseVisualStyleBackColor = true;
+            this.btnAddProduct.UseVisualStyleBackColor = false;
             this.btnAddProduct.Visible = false;
             this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
@@ -162,6 +169,16 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Сортир.:";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(710, 15);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 66);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,6 +187,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panelTools);
             this.Controls.Add(this.panelUser);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Каталог товаров";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -177,6 +195,7 @@
             this.panelUser.PerformLayout();
             this.panelTools.ResumeLayout(false);
             this.panelTools.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -193,5 +212,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

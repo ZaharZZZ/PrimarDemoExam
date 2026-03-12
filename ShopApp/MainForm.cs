@@ -201,12 +201,12 @@ namespace ShopApp
         {
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Можно ничего не делать
+            Application.Exit();
         }
     }
 }

@@ -17,6 +17,7 @@ namespace ShopApp
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductEditForm));
             this.pbPhoto = new System.Windows.Forms.PictureBox();
             this.btnLoadPhoto = new System.Windows.Forms.Button();
             this.txtArticle = new System.Windows.Forms.TextBox();
@@ -146,13 +147,14 @@ namespace ShopApp
             // 
             // btnSave
             // 
+            this.btnSave.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.btnSave.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnSave.Location = new System.Drawing.Point(22, 241);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(96, 27);
             this.btnSave.TabIndex = 12;
             this.btnSave.Text = "Сохранить";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
@@ -270,6 +272,7 @@ namespace ShopApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(591, 372);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnCancel);
@@ -296,6 +299,7 @@ namespace ShopApp
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProductEditForm";
             this.Text = "Редактирование товара";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProductEditForm_FormClosing);
