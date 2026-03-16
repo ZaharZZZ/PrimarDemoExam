@@ -21,6 +21,8 @@
             this.lblUserName = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
             this.panelTools = new System.Windows.Forms.Panel();
+            this.btnOrders = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAddProduct = new System.Windows.Forms.Button();
             this.cmbSort = new System.Windows.Forms.ComboBox();
             this.cmbSupplierFilter = new System.Windows.Forms.ComboBox();
@@ -28,7 +30,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelUser.SuspendLayout();
             this.panelTools.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -80,6 +81,7 @@
             // panelTools
             // 
             this.panelTools.BackColor = System.Drawing.Color.White;
+            this.panelTools.Controls.Add(this.btnOrders);
             this.panelTools.Controls.Add(this.pictureBox1);
             this.panelTools.Controls.Add(this.btnAddProduct);
             this.panelTools.Controls.Add(this.cmbSort);
@@ -93,6 +95,26 @@
             this.panelTools.Name = "panelTools";
             this.panelTools.Size = new System.Drawing.Size(822, 98);
             this.panelTools.TabIndex = 2;
+            // 
+            // btnOrders
+            // 
+            this.btnOrders.Location = new System.Drawing.Point(170, 45);
+            this.btnOrders.Name = "btnOrders";
+            this.btnOrders.Size = new System.Drawing.Size(108, 36);
+            this.btnOrders.TabIndex = 8;
+            this.btnOrders.Text = "Заказы";
+            this.btnOrders.UseVisualStyleBackColor = true;
+            this.btnOrders.Click += new System.EventHandler(this.btnOrders_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(710, 15);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 66);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // btnAddProduct
             // 
@@ -169,16 +191,6 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Сортир.:";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(710, 15);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 66);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -199,7 +211,7 @@
             this.ResumeLayout(false);
 
         }
-
+        
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panelUser;
         private System.Windows.Forms.Label lblUserName;
@@ -213,5 +225,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnOrders;
     }
 }

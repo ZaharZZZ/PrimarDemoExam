@@ -208,5 +208,16 @@ namespace ShopApp
         {
             Application.Exit();
         }
+
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+            // Проверяем, авторизован ли пользователь (кнопка видна только для авторизованных)
+            if (currentUser == null) return;
+
+            using (var ordersForm = new OrdersForm(currentUser))
+            {
+                ordersForm.ShowDialog();
+            }
+        }
     }
 }

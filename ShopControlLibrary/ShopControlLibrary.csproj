@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrderControl.Designer.cs">
+      <DependentUpon>OrderControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

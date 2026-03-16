@@ -215,5 +215,184 @@ namespace ShopClassLibrary
                 }
             }
         }
+
+        public static List<Order> GetOrders()
+        {
+            var orders = new List<Order>();
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"
+            SELECT o.order_id, o.order_date, o.delivery_date, o.pickup_point_id, 
+                   o.customer_name, o.pickup_code, o.status, p.address as pickup_address,
+                   u.full_name as customer_fullname
+            FROM orders o
+            JOIN pickup_points p ON o.pickup_point_id = p.id
+            JOIN users u ON o.customer_name = u.id
+            ORDER BY o.order_date DESC";
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        orders.Add(new Order
+                        {
+                            OrderId = Convert.ToInt32(reader["order_id"]),
+                            OrderDate = Convert.ToDateTime(reader["order_date"]),
+                            DeliveryDate = reader["delivery_date"] == DBNull.Value ? null : (DateTime?)Convert.ToDateTime(reader["delivery_date"]),
+                            PickupPointId = Convert.ToInt32(reader["pickup_point_id"]),
+                            PickupAddress = reader["pickup_address"].ToString(),
+                            CustomerId = Convert.ToInt32(reader["customer_name"]),
+                            CustomerName = reader["customer_fullname"].ToString(),
+                            PickupCode = reader["pickup_code"].ToString(),
+                            Status = reader["status"].ToString()
+                        });
+                    }
+                }
+            }
+            return orders;
+        }
+
+        public static Order GetOrder(int orderId)
+        {
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"
+            SELECT o.order_id, o.order_date, o.delivery_date, o.pickup_point_id, 
+                   o.customer_name, o.pickup_code, o.status, p.address as pickup_address,
+                   u.full_name as customer_fullname
+            FROM orders o
+            JOIN pickup_points p ON o.pickup_point_id = p.id
+            JOIN users u ON o.customer_name = u.id
+            WHERE o.order_id = @orderId";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Order
+                            {
+                                OrderId = Convert.ToInt32(reader["order_id"]),
+                                OrderDate = Convert.ToDateTime(reader["order_date"]),
+                                DeliveryDate = reader["delivery_date"] == DBNull.Value ? null : (DateTime?)Convert.ToDateTime(reader["delivery_date"]),
+                                PickupPointId = Convert.ToInt32(reader["pickup_point_id"]),
+                                PickupAddress = reader["pickup_address"].ToString(),
+                                CustomerId = Convert.ToInt32(reader["customer_name"]),
+                                CustomerName = reader["customer_fullname"].ToString(),
+                                PickupCode = reader["pickup_code"].ToString(),
+                                Status = reader["status"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public static List<PickupPoint> GetPickupPoints()
+        {
+            var points = new List<PickupPoint>();
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT id, mail_index, address FROM pickup_points ORDER BY address";
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        points.Add(new PickupPoint
+                        {
+                            Id = Convert.ToInt32(reader["id"]),
+                            MailIndex = Convert.ToInt32(reader["mail_index"]),
+                            Address = reader["address"].ToString()
+                        });
+                    }
+                }
+            }
+            return points;
+        }
+
+        public static void AddOrder(Order order)
+        {
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"INSERT INTO orders (order_date, delivery_date, pickup_point_id, customer_name, pickup_code, status)
+                         VALUES (@order_date, @delivery_date, @pickup_point_id, @customer_name, @pickup_code, @status)";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@order_date", order.OrderDate);
+                    cmd.Parameters.AddWithValue("@delivery_date", order.DeliveryDate ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@pickup_point_id", order.PickupPointId);
+                    cmd.Parameters.AddWithValue("@customer_name", order.CustomerId);
+                    cmd.Parameters.AddWithValue("@pickup_code", order.PickupCode);
+                    cmd.Parameters.AddWithValue("@status", order.Status);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void UpdateOrder(Order order)
+        {
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"UPDATE orders SET order_date=@order_date, delivery_date=@delivery_date,
+                         pickup_point_id=@pickup_point_id, customer_name=@customer_name,
+                         pickup_code=@pickup_code, status=@status WHERE order_id=@order_id";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@order_id", order.OrderId);
+                    cmd.Parameters.AddWithValue("@order_date", order.OrderDate);
+                    cmd.Parameters.AddWithValue("@delivery_date", order.DeliveryDate ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@pickup_point_id", order.PickupPointId);
+                    cmd.Parameters.AddWithValue("@customer_name", order.CustomerId);
+                    cmd.Parameters.AddWithValue("@pickup_code", order.PickupCode);
+                    cmd.Parameters.AddWithValue("@status", order.Status);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void DeleteOrder(int orderId)
+        {
+            // Сначала удаляем связанные позиции (из-за внешнего ключа)
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // Удалить позиции заказа
+                        string deleteItems = "DELETE FROM order_items WHERE order_id = @order_id";
+                        using (var cmd = new MySqlCommand(deleteItems, conn, tran))
+                        {
+                            cmd.Parameters.AddWithValue("@order_id", orderId);
+                            cmd.ExecuteNonQuery();
+                        }
+                        // Удалить сам заказ
+                        string deleteOrder = "DELETE FROM orders WHERE order_id = @order_id";
+                        using (var cmd = new MySqlCommand(deleteOrder, conn, tran))
+                        {
+                            cmd.Parameters.AddWithValue("@order_id", orderId);
+                            cmd.ExecuteNonQuery();
+                        }
+                        tran.Commit();
+                    }
+                    catch
+                    {
+                        tran.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
+
+
     }
 }
